@@ -1,0 +1,17 @@
+html[lang="ja"] {
+  font-family: "Noto Sans JP", "Hiragino Kaku Goothic ProN", Meiryo, sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+body[lang="en"] {
+  font-family: 'Arial', sans-serif;
+  font-optical-sizing: auto;
+  font-weight: 400;
+  font-style: normal;
+}
+
+.reference-site a {
+  display: block;
+}
