@@ -20,18 +20,16 @@
 <h1>TypeScript Style Guide</h1>
 
 <!-- TODO::最後に削除予定 -->
+<h2 id="preferences-site" class="numbered">参考とするサイト</h2>
+
+
+
 <div class="reference-site">
-  <h2>参考とするサイト</h2>
   <a href="https://typescript-jp.gitbook.io/deep-dive/styleguide">TypeScript Deep Dive 日本語版</a>
   <a href="https://google.github.io/styleguide/tsguide.html">Google TypeScript Style Guides</a>
   <a href="https://github.com/google/styleguide/blob/gh-pages/tsguide.html">ドキュメントの書き方参考Github</a>
 </div>
 
-
-
-<p>
-日本語を入力するととても読みやすいのがわかると思います。
-</p>
 
 <pre>
 <code class="language-ts">const sample = "Hello World";
@@ -42,8 +40,98 @@ function sampleCode() {
 }</code>
 </pre>
 
-<a id="source-organization">sample</a>
+<!-- ここからコンテンツを記載していきます -->
+<h2 id="source-file-basics" class="numbered">ソースファイルの設定</h2>
 
+
+
+<h3 id="file-encoding" class="numbered">ファイルのエンコード：UTF-8</h3>
+
+<p>ソースファイルは<strong>UTF-8</strong>でエンコードされていること</p>
+
+<h3 id="whitespace-characters" class="numbered">空白文字</h3>
+
+<p>空白文字については全角のものを使用しない事とする。ただし、リテラル文字列内のみ使用することを許可する</p>
+
+
+
+<h2 id="coding-convention" class="numbered">コーディング規約</h2>
+
+
+
+<h3 id="variable-and-function" class="numbered">変数と関数</h3>
+
+<p>変数と関数名には<code>camelCase</code>を使用します。これは従来のJavaScriptと同様です</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">var FooVar;
+function BarFunc() {}
+</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">var fooVar;
+function barFunc() {}
+</code></pre>
+
+<h3 id="class-name" class="numbered">クラス</h3>
+
+<p>クラス名には<code>PascalCase</code>を使用します。これは従来のJavaScriptで一般的なルールです</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">class foo { }</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">class Foo { }</code></pre>
+
+<p>クラスメソッド、メンバ変数については<code>camelCase</code>を使用します。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">class Foo {
+  Bar: number;
+  Baz() { }
+}</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">class Foo {
+  bar: number;
+  baz() { }
+}</code></pre>
+
+<h3 id="interface" class="numbered">インターフェース</h3>
+
+<p>インターフェース名は<code>PascalCase</code>、メンバは<code>camelCase</code>を使用します。</p>
+<p>プレフィックスに<code>I</code>をつけないでください。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">interface IFoo {
+}</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">interface Foo {
+}</code></pre>
+
+<h3 id="type" class="numbered">タイプ</h3>
+
+<p>名前は<code>PascalCase</code>、メンバは<code>camelCase</code>を使用します。</p>
+
+<h3 id="namespace" class="numbered">名前空間</h3>
+
+<p>名前は<code>PascalCase</code>を使用します。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">namespace foo { }</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">namespace Foo { }</code></pre>
+
+<h3 id="enum" class="numbered">Enum</h3>
+
+<p>enum名は<code>PascalCase</code>を使用します。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">enum color {
+}</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">enum Color {
+}</code></pre>
+<p>enumのメンバは<code>PascalCase</code>を使用します。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">enum Color {
+  red
+}</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">enum Color {
+  Red
+}</code></pre>
 
 </div>
 
