@@ -133,6 +133,42 @@ function barFunc() {}
   Red
 }</code></pre>
 
+<h3 id="null-and-undefined" class="numbered">nullとundefined</h3>
+
+<p>null, undefinedについては明示的には使用しないこととします。どうしても使用する必要がある場合は、一貫性を保つためにundefinedを優先的に使用すること。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">let foo = { x: 123, y: undefined };</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">let foo: { x: number, y?: number } = { x: 123 };</code></pre>
+<p><code>return</code>文を使用する際も、undefinedを使用します</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">return null;</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">return undefined;</code></pre>
+<p>既存のAPI (組み込み関数)に対して引数を渡す場合は<code>null</code>を使用します。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">cb(undefined)</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">cb(null)</code></pre>
+<p>nullまたはundefinedであるかどうかのチェックはtruthyを使って行います。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">if (error === null)</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">if (error)</code></pre>
+<p><code>== null</code>/<code>!= null</code>では、null, undefinedをチェックできますが、その他の値(例:<code>''</code>,<code>0</code>,<code>false</code>など)では機能しません。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">if (error !== null) // undefinedを除外しない</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">if (error != null) // nullもundefinedも除外する</code></pre>
+
+<h3 id="define-type" class="numbered">型定義</h3>
+
+<p>変数などの型の定義を記載する際は、型の前に半角スペースを入れます。</p>
+<h5>悪い例</h5>
+<pre><code class="language-ts bad">const foo:string = "Hello";</code></pre>
+<h5>良い例</h5>
+<pre><code class="language-ts">const foo: string = "Hello";</code></pre>
+
 </div>
 
 </body>
