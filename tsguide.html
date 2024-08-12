@@ -169,6 +169,50 @@ function barFunc() {}
 <h5>良い例</h5>
 <pre><code class="language-ts">const foo: string = "Hello";</code></pre>
 
+<h3 id="quotation-marks" class="numbered">引用符について</h3>
+
+<p>文字列内に変数を含めない限り、シングルクォート(<code> ' </code>)を使用することとします。</p>
+<p>ダブルクォーテーションを使用できない場合は、バッククォート(<code> ` </code>)を使用することとします。</p>
+
+<h3 id="space" class="numbered">スペース</h3>
+
+<p>タブではなく<code>2</code>つのスペースを使用します。</p>
+
+<h3 id="semicoron" class="numbered">セミコロン</h3>
+
+<p>セミコロンは必ず入力することとします。</p>
+
+<h3 id="array" class="numbered">配列</h3>
+
+<p>配列のアノテーションは<code>foos: Array(Foo)</code>ではなく<code>foos: Foo[]</code>として付けることとします。</p>
+
+<h3 id="file-name" class="numbered">ファイル名</h3>
+
+<p><code>camelCase</code>を使用してファイルに名前を付けます。</p>
+<h5>例</h5>
+<pre><code class="language-ts">accordion.tsx
+myControl.tsx
+utils.ts
+map.ts
+</code></pre>
+
+<h3 id="type-and-interface" class="numbered">typeとinterface</h3>
+
+<p>ユニオン型や交差型が必要な場合には<code>type</code>を使用します。</p>
+<pre><code class="language-ts">type Foo = number | { someProperty: number }</code></pre>
+<p><code>extend</code>や<code>implements</code>をしたい場合は<code>interface</code>を使用します。</p>
+<pre><code class="language-ts">interface Foo {
+  foo: string;
+}
+interface FooBar extends Foo {
+  bar: string;
+}
+class X implements FooBar {
+  foo: string;
+  bar: string;
+}
+</code></pre>
+
 </div>
 
 </body>
