@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="ja">
+
+<head>
+<meta charset="utf-8">
+<title>TypeScript Cording Guide</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP&family=Source+Code+Pro&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="./assets/css/base.css">
+<link rel="stylesheet" href="./assets/css/javaguide.css">
+<script src="./assets/js/styleguide.js"></script>
+<script src="./assets/js/jsguide.js"></script>
+</head>
+
+<body onload="initStyleGuide();">
+
+<div id="content">
+
+<h1>TypeScript Style Guide</h1>
+
+<h2 id="naming-rule" class="numbered">命名規則</h2>
+
+<h3 id="variable" class="numbered">変数</h3>
+<ul>
+  <li>キャメルケースで記述すること</li>
+  <li>型が<code>bool</code>の場合、<code>is</code>,<code>can</code>,<code>has</code>のいずれかを接頭辞につけること</li>
+  <li>名前の短さではなく分かりやすさを優先して命名すること</li>
+  <li>配列やオブジェクトなど、複数のデータがある場合は名前も複数形とすること</li>
+  <li><code>for</code>,<code>while</code>でのインデックスとして使う変数はi,&ensp;j,&ensp;kを使用すること<br>※インデックスの使用頻度が高い場合は1文字ではなくわかりやすい名前を付けること</li>
+  <li>関数からの返却値を受け取る場合、関数名に合わせた変数名にすること<br>※var currentPageName = getCurrentPageName();</li>
+</ul>
+<h3 id="constants" class="numbered">定数</h3>
+<ul>
+  <li>すべて大文字のスネークケースで記述すること</li>
+</ul>
+<h3 id="functions" class="numbered">関数</h3>
+<ul>
+  <li>キャメルケースで記述すること</li>
+  <li>名前の短さではなく分かりやすさを優先して命名すること</li>
+  <li>値をreturnする関数の場合は、返却値が明確な名前にすること</li>
+</ul>
+<h3 id="class" class="numbered">クラス</h3>
+<ul>
+  <li>パスカルケースで記述すること</li>
+  <li>名前の短さではなく分かりやすさを優先して命名すること</li>
+</ul>
+<h3 id="interface" class="numbered">インターフェース</h3>
+<ul>
+  <li>パスカルケースで記述すること</li>
+  <li>メンバはキャメルケースで記述すること</li>
+  <li>プレフィックスに<code>I</code>をつけないこと</li>
+</ul>
+<h3 id="type" class="numbered">タイプ</h3>
+<ul>
+  <li>パスカルケースで記述すること</li>
+  <li>メンバはキャメルケースで記述すること</li>
+</ul>
+<h3 id="namespace" class="numbered">名前空間 (namespace)</h3>
+<ul>
+  <li>パスカルケースで記述すること</li>
+</ul>
+<h3 id="enum" class="numbered">Enum</h3>
+<ul>
+  <li>パスカルケースで記述すること</li>
+  <li>メンバもパスカルケースで記述すること</li>
+</ul>
+
+<h2 id="comment" class="numbered">コメント</h2>
+
+<h3 id="write-rule" class="numbered">記述規則</h3>
+<ul>
+  <li>コードの内容をなぞるだけのコメントは不要</li>
+  <li>命名が不適切でコメントを記述する必要がある場合はリファクタリングを行うこと</li>
+  
+</ul>
+
+</div>
+</body>
+
+</html>
