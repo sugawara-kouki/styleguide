@@ -28,7 +28,7 @@
   <li>名前の短さではなく分かりやすさを優先して命名すること</li>
   <li>配列やオブジェクトなど、複数のデータがある場合は名前も複数形とすること</li>
   <li><code>for</code>,<code>while</code>でのインデックスとして使う変数はi,&ensp;j,&ensp;kを使用すること<br>※インデックスの使用頻度が高い場合は1文字ではなくわかりやすい名前を付けること</li>
-  <li>関数からの返却値を受け取る場合、関数名に合わせた変数名にすること<br>※var currentPageName = getCurrentPageName();</li>
+  <li>関数からの返却値を受け取る場合、関数名に合わせた変数名にすること<br><code class="language-ts">var currentPageName = getCurrentPageName();</code></li>
 </ul>
 <h3 id="constants" class="numbered">定数</h3>
 <ul>
@@ -66,15 +66,117 @@
   <li>メンバもパスカルケースで記述すること</li>
 </ul>
 
-<h2 id="comment" class="numbered">コメント</h2>
+<h2 id="write-rule" class="numbered">記述規則</h2>
 
-<h3 id="write-rule" class="numbered">記述規則</h3>
+<h3 id="comment" class="numbered">コメント</h3>
 <ul>
   <li>コードの内容をなぞるだけのコメントは不要</li>
   <li>命名が不適切でコメントを記述する必要がある場合はリファクタリングを行うこと</li>
-  
 </ul>
 
+<h3 id="iterative-process" class="numbered">繰り返し処理</h2>
+<ul>
+  <li>配列操作については<code>map</code>, <code>filter</code>などの配列用関数を使用すること</li>
+  <li>インデックス値を使用しない場合は、拡張for文を使用すること</li>
+</ul>
+
+<h3 id="conditional-branch-process" class="numbered">条件分岐処理</h3>
+<ul>
+<li>
+<code>else</code>がない場合は即<code>return</code>すること(早期return)
+<pre><code class="language-ts bad">const hoge = () => {
+  if (foo === "bar") {
+    // Do Something
+  }
+}
+</code></pre>
+<pre><code class="language-ts">const hoge = () => {
+  if (foo !== "bar") return;
+  // Do Something
+}
+</code></pre>
+</li>
+<li>
+厳密等価演算子を使用すること
+<pre><code class="language-ts bad">if (hoge == "fuga") {
+  // Do Something
+}
+</code></pre>
+<pre><code class="language-ts">if (hoge === "fuga") {
+  // Do Something
+}
+</code></pre>
+</li>
+<li>
+(!○○)は使用しないこと
+<pre><code class="language-ts bad">if (!hoge) {
+  // Do Something
+}
+</code></pre>
+<pre><code class="language-ts">if (hoge === false) {
+  // Do Something
+}
+</code></pre>
+</li>
+</ul>
+
+<h3 id="function-write-rule" class="numbered">関数</h3>
+<ul>
+<li>関数には1つまたは最小単位の機能のみ実装すること</li>
+<li>戻り値, 引数の型定義を行うこと</li>
+<li>
+フラグ引数はできるだけ使用しないこと
+<pre><code class="language-ts bad">const action = (foo:boolean) => {
+  if(foo){
+    // Do ActionA
+  } else {
+    // Do ActionB
+  }
+}
+
+const hoge = () => {
+  var foo:boolean;
+  // Process
+  Action(foo);
+}</code></pre>
+<pre><code class="language-ts">const actionA = () => {
+  // Do ActionA
+}
+
+const actionB = () => {
+  // Do ActionB
+}
+
+const hoge = () => {
+  var foo:boolean;
+  // Process
+  if(foo){
+    actionA();
+  } else {
+    actionB();
+  }
+}</code></pre>
+</li>
+</ul>
+
+<!-- ネストの記述 -->
+<h3 id="nested" class="numbered">ネスト</h2>
+<ul>
+<li>ネストは最大3つまでに収めること<br>どうしても3つ以上になってしまう場合はリファクタリングを検討すること</li>
+</ul>
+
+<!-- 配列の記述 -->
+<h3 id="array" class="numbered">配列</h2>
+<ul>
+<li>配列のアノテーションは<code>foos: Array(hoge)</code>ではなく<code>foos: Foo[]</code>として付けること</li>
+</ul>
+
+<!-- 型の記述 -->
+<h3 id="type-and-interface" class="numbered">型定義</h3>
+<ul>
+<li>ユニオン型や交差型が必要な場合には<code>type</code>を使用すること</li>
+<li><code>extend</code>や<code>implements</code>をしたい場合は<code>interface</code>を使用すること</li>
+</ul>
 </div>
 </body>
 
