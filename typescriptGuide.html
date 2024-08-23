@@ -29,16 +29,19 @@
   <li>配列やオブジェクトなど、複数のデータがある場合は名前も複数形とすること</li>
   <li><code>for</code>,<code>while</code>でのインデックスとして使う変数はi,&ensp;j,&ensp;kを使用すること<br>※インデックスの使用頻度が高い場合は1文字ではなくわかりやすい名前を付けること</li>
   <li>関数からの返却値を受け取る場合、関数名に合わせた変数名にすること<br><code class="language-ts">var currentPageName = getCurrentPageName();</code></li>
+  <li><code>flg</code>,<code>cnt</code>など、省略形での命名は基本的にしないこと<br><code>flg -> flag</code>, <code>cnt -> count</code></li>
 </ul>
 <h3 id="constants" class="numbered">定数</h3>
 <ul>
   <li>すべて大文字のスネークケースで記述すること</li>
+  <li><code>HOGEHOGE_1, HOGEHOGE_2</code>のように一目見てデータが判断できない命名はしないこと</li>
 </ul>
 <h3 id="functions" class="numbered">関数</h3>
 <ul>
   <li>キャメルケースで記述すること</li>
   <li>名前の短さではなく分かりやすさを優先して命名すること</li>
-  <li>値をreturnする関数の場合は、返却値が明確な名前にすること</li>
+  <li>実行される処理内容と一致する命名をすること</li>
+  <li>値をreturnする関数の場合は、返却値が明確な命名をすること</li>
 </ul>
 <h3 id="class" class="numbered">クラス</h3>
 <ul>
@@ -70,14 +73,14 @@
 
 <h3 id="comment" class="numbered">コメント</h3>
 <ul>
-  <li>コードの内容をなぞるだけのコメントは不要</li>
+  <li>コードの内容をなぞるだけのコメントは記載しないこと</li>
   <li>命名が不適切でコメントを記述する必要がある場合はリファクタリングを行うこと</li>
 </ul>
 
 <h3 id="iterative-process" class="numbered">繰り返し処理</h2>
 <ul>
   <li>配列操作については<code>map</code>, <code>filter</code>などの配列用関数を使用すること</li>
-  <li>インデックス値を使用しない場合は、拡張for文を使用すること</li>
+  <li>インデックス値を使用しない場合は、拡張for文を使用すること<br><code>for-of, for-in</code></li>
 </ul>
 
 <h3 id="conditional-branch-process" class="numbered">条件分岐処理</h3>
@@ -163,12 +166,15 @@ const hoge = () => {
 <h3 id="nested" class="numbered">ネスト</h2>
 <ul>
 <li>ネストは最大3つまでに収めること<br>どうしても3つ以上になってしまう場合はリファクタリングを検討すること</li>
+<li>複数のif文でネストされるときは条件を見直し、早期リターンできないか検討すること</li>
 </ul>
 
 <!-- 配列の記述 -->
 <h3 id="array" class="numbered">配列</h2>
 <ul>
 <li>配列のアノテーションは<code>foos: Array(hoge)</code>ではなく<code>foos: Foo[]</code>として付けること</li>
+<li>オブジェクトが配列かどうか検証する際は、<code>Array.isArray(arr);</code>を使用すること
+</li>
 </ul>
 
 <!-- 型の記述 -->
