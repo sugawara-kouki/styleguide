@@ -68,6 +68,11 @@
   <li>パスカルケースで記述すること</li>
   <li>メンバもパスカルケースで記述すること</li>
 </ul>
+<h3 id="file-name" class="numbered">ファイル</h3>
+<ul>
+<li>キャメルケースで命名すること</li>
+<li>名前で何が記載されているのかがわかるように命名すること</li>
+</ul>
 
 <h2 id="write-rule" class="numbered">記述規則</h2>
 
@@ -79,48 +84,18 @@
 
 <h3 id="iterative-process" class="numbered">繰り返し処理</h2>
 <ul>
-  <li>配列操作については<code>map</code>, <code>filter</code>などの配列用関数を使用すること</li>
-  <li>インデックス値を使用しない場合は、拡張for文を使用すること<br><code>for-of, for-in</code></li>
+<li>配列操作については<code>map</code>, <code>filter</code>などの配列用関数を使用すること</li>
+<li>インデックス値を使用しない場合は、拡張for文を使用すること<br><code>for-of, for-in</code></li>
+<li><code>for</code>の中で<code>if</code>を記載する場合は早期continueでネストが深くなるのをを回避すること</li>
 </ul>
 
 <h3 id="conditional-branch-process" class="numbered">条件分岐処理</h3>
 <ul>
-<li>
-<code>else</code>がない場合は即<code>return</code>すること(早期return)
-<pre><code class="language-ts bad">const hoge = () => {
-  if (foo === "bar") {
-    // Do Something
-  }
-}
-</code></pre>
-<pre><code class="language-ts">const hoge = () => {
-  if (foo !== "bar") return;
-  // Do Something
-}
-</code></pre>
-</li>
-<li>
-厳密等価演算子を使用すること
-<pre><code class="language-ts bad">if (hoge == "fuga") {
-  // Do Something
-}
-</code></pre>
-<pre><code class="language-ts">if (hoge === "fuga") {
-  // Do Something
-}
-</code></pre>
-</li>
-<li>
-(!○○)は使用しないこと
-<pre><code class="language-ts bad">if (!hoge) {
-  // Do Something
-}
-</code></pre>
-<pre><code class="language-ts">if (hoge === false) {
-  // Do Something
-}
-</code></pre>
-</li>
+<li>肯定条件を先に記述すること</li>
+<li>ガード節を用いてelseはできるだけ記述しないこと</li>
+<li>厳密等価演算子を使用すること</li>
+<li><code>if (!hogehoge)</code>は可能な限り使用しないこと<br><code>if (hogehoge === false)</code></li>
+<li>複雑な条件式を使用している場合は逆の発送を使用して簡潔ならないかを検討すること</li>
 </ul>
 
 <h3 id="function-write-rule" class="numbered">関数</h3>
@@ -180,11 +155,29 @@ const hoge = () => {
 <!-- 型の記述 -->
 <h3 id="type-and-interface" class="numbered">型定義</h3>
 <ul>
-<li>ユニオン型や交差型が必要な場合には<code>type</code>を使用すること</li>
-<li><code>extend</code>や<code>implements</code>をしたい場合は<code>interface</code>を使用すること</li>
+<li>基本的には<code>type</code>を使用すること</li>
+<li><code>extend</code>や<code>implements</code>を使用する場合は<code>interface</code>を使用すること</li>
 </ul>
 
-<p>コーディングルールを守って、保守性・可読性のあるコードをかけるようになりましょう！</p>
+<h3 id="ternary-operator" class="numbered">三項演算子</h3>
+<ul>
+<li>基本的に使用しないこと</li>
+<li>使用する場合は簡単な条件式であることを確認すること</li>
+</ul>
+
+<h3 id="modifier" class="numbered">修飾子</h3>
+<ul>
+<li><code>var</code>は基本的に使用しないこと</li>
+<li><code>let</code>は値が変更される可能性があるため、基本的には<code>const</code>を使用すること</li>
+</ul>
+
+<h2 id="folder-structure" class="numbered">フォルダ構成</h2>
+
+<h3 id="structure-rule" class="numbered">構成規則</h3>
+<ul>
+  <li>基本的に使用するフレームワークで推奨されている構成を使用すること</li>
+  <li><code>utils, constants, types</code>等はPJ共通で構成すること</li>
+</ul>
 </div>
 </body>
 
