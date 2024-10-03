@@ -4,7 +4,8 @@ import BadContainer from './BadContainer';
 
 const meta = {
   title: 'Container/BadContainer',
-  component: BadContainer
+  component: BadContainer,
+  tags: ['autodocs']
 } satisfies Meta<typeof BadContainer>;
 
 export default meta;

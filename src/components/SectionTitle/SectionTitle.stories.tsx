@@ -4,7 +4,8 @@ import SectionTitle from './SectionTitle';
 
 const meta = {
   title: 'Title/SectionTitle',
-  component: SectionTitle
+  component: SectionTitle,
+  tags: ['autodocs']
 } satisfies Meta<typeof SectionTitle>;
 
 export default meta;

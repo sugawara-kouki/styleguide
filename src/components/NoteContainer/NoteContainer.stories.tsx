@@ -4,7 +4,8 @@ import InfoContainer from './NoteContainer';
 
 const meta = {
   title: 'Container/NoteContainer',
-  component: InfoContainer
+  component: InfoContainer,
+  tags: ['autodocs']
 } satisfies Meta<typeof InfoContainer>;
 
 export default meta;

@@ -1,13 +1,13 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
 import DetailContainer from './DetailContainer';
-import CodeBlock from '../CodeBlock/CodeBlock';
 import SyntaxHighLightCodeBlock from '../SyntaxHighLighter/SyntaxHighLighter';
 import { LANGUAGE_CONSTANTS } from '../../constants/languageConstants';
 
 const meta = {
-  title: 'Contaier/DetailContainer',
-  component: DetailContainer
+  title: 'Container/DetailContainer',
+  component: DetailContainer,
+  tags: ['autodocs']
 } satisfies Meta<typeof DetailContainer>;
 
 export default meta;

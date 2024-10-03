@@ -4,7 +4,8 @@ import SyntaxHighLighter from './SyntaxHighLighter';
 
 const meta = {
   title: 'Code/SyntaxHighLighter',
-  component: SyntaxHighLighter
+  component: SyntaxHighLighter,
+  tags: ['autodocs']
 } satisfies Meta<typeof SyntaxHighLighter>;
 
 export default meta;
@@ -168,7 +169,7 @@ print(f"Sum: {sum_result}")
 product = multiply(4, 5)
 print(f"Product: {product}")`;
 
-export const SyntaxHighLighterDefault: Story = {
+export const TypescriptExample: Story = {
   args: {
     language: 'typescript',
     codeSnippet: typescriptSample

@@ -4,7 +4,8 @@ import GoodContainer from './GoodContainer';
 
 const meta = {
   title: 'Container/GoodContainer',
-  component: GoodContainer
+  component: GoodContainer,
+  tags: ['autodocs']
 } satisfies Meta<typeof GoodContainer>;
 
 export default meta;

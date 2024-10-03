@@ -4,7 +4,8 @@ import SideMenu from './SideMenu';
 
 const meta = {
   title: 'Menu/SideMenu',
-  component: SideMenu
+  component: SideMenu,
+  tags: ['autodocs']
 } satisfies Meta<typeof SideMenu>;
 
 export default meta;

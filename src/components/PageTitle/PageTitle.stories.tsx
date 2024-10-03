@@ -4,7 +4,8 @@ import PageTitle from './PageTitle';
 
 const meta = {
   title: 'Title/PageTitle',
-  component: PageTitle
+  component: PageTitle,
+  tags: ['autodocs']
 } satisfies Meta<typeof PageTitle>;
 
 export default meta;

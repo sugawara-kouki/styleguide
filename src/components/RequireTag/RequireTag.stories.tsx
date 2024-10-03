@@ -4,7 +4,8 @@ import RequireTag from './RequireTag';
 
 const meta = {
   title: 'Tag/RequireTag',
-  component: RequireTag
+  component: RequireTag,
+  tags: ['autodocs']
 } satisfies Meta<typeof RequireTag>;
 
 export default meta;

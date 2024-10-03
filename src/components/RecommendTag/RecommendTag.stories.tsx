@@ -4,7 +4,8 @@ import RecommendTag from './RecommendTag';
 
 const meta = {
   title: 'Tag/RecommendTag',
-  component: RecommendTag
+  component: RecommendTag,
+  tags: ['autodocs']
 } satisfies Meta<typeof RecommendTag>;
 
 export default meta;
