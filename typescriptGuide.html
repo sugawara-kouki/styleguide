@@ -99,12 +99,6 @@ const HOGE_FUGA_CONFIG: Readonly<ConfigType> = {
   <li>メンバもパスカルケースで記述すること</li>
 </ul>
 
-<h3 id="file-name" class="numbered">ファイル名</h3>
-<ul>
-<li>ローワーキャメルケースで命名すること</li>
-<li>ファイル内の処理内容と一致する命名をすること</li>
-</ul>
-
 <h2 id="write-rule" class="numbered">記述規則</h2>
 
 <h3 id="comment" class="numbered">コメント</h3>
@@ -121,7 +115,7 @@ const HOGE_FUGA_CONFIG: Readonly<ConfigType> = {
 <li>タスクコメントにPJの課題が紐づく場合は、課題番号を明記すること</li>
 </ul>
 
-<h3 id="iterative-process" class="numbered">繰り返し処理</h2>
+<h3 id="iterative-process" class="numbered">繰り返し処理</h3>
 <ul>
 <li>インデックス値を使用しない場合は、拡張for文を使用すること<br><code>for-of, for-in</code><br><code>forEach</code>構文は原則使用しないこと</li>
 <li><code>for</code>の中で<code>if</code>を記載する場合は早期continueでネストが深くなるのをを回避すること</li>
@@ -167,10 +161,22 @@ const outputName = (name: string | null) => {
 }
 </code></pre>
 </li>
-<!-- TODO:: ここは要検討 -->
 <li>厳密等価演算子を使用すること</li>
-<li><code>if (!hogehoge)</code>は可能な限り使用しないこと<br><code>if (hogehoge === false)</code></li>
-<li>複雑な条件式を使用している場合は逆の発送を使用して簡潔ならないかを検討すること</li>
+<li><code>boolean</code>型の判定については<code>if (!hogehoge)</code>で判定すること</li>
+<li>それ以外の型の判定<code>undefined/null</code>については<code>if (hogehoge === null)</code>で判定すること</li>
+<li>複雑な条件式を使用している場合は逆の発想を使用して簡潔ならないかを検討すること</li>
+<pre><code class="language-ts bad">function isEligible(age, hasConsent, isEmployed, hasID) {
+  if (!((age >= 18 && hasID) || (age >= 16 && hasConsent && isEmployed && hasID))) {
+    return "不適格";
+  }
+  return "適格";
+}</code></pre>
+<pre><code class="language-ts">function isEligible(age, hasConsent, isEmployed, hasID) {
+  if (age < 16 || !hasID || (age < 18 && (!hasConsent || !isEmployed))) {
+    return "不適格";
+  }
+  return "適格";
+}</code></pre>
 </ul>
 
 <h3 id="function-write-rule" class="numbered">関数</h3>
@@ -217,14 +223,48 @@ const hoge = () => {
 </ul>
 
 <!-- ネストの記述 -->
-<h3 id="nested" class="numbered">ネスト</h2>
+<h3 id="nested" class="numbered">ネスト</h3>
 <ul>
 <li>ネストは最大2つまでに収めること<br>どうしても2つ以上になってしまう場合はリファクタリングを検討すること</li>
 <li>複数のif文でネストされるときは条件を見直し、早期リターンできないか検討すること</li>
+<pre><code class="language-ts bad">function evaluateValue(value) {
+  if (value > 10) {
+    if (value > 20) {
+      return "非常に大きい";
+    } else {
+      return "大きい";
+    }
+  } else {
+    if (value < 5) {
+      if (value < 0) {
+        return "非常に小さい";
+      } else {
+        return "小さい";
+      }
+    } else {
+      return "等しい";
+    }
+  }
+}</code></pre>
+<pre><code class="language-ts">function evaluateValue(value) {
+  if (value > 20) {
+    return "非常に大きい";
+  }
+  if (value > 10) {
+    return "大きい";
+  }
+  if (value < 0) {
+    return "非常に小さい";
+  }
+  if (value < 5) {
+    return "小さい";
+  }
+  return "等しい";
+}</code></pre>
 </ul>
 
 <!-- 配列の記述 -->
-<h3 id="array" class="numbered">配列</h2>
+<h3 id="array" class="numbered">配列</h3>
 <ul>
 <li>配列のアノテーションは<code>foos: Array(hoge)</code>ではなく<code>foos: Foo[]</code>として付けること</li>
 <li>オブジェクトが配列かどうか検証する際は、<code>Array.isArray(arr);</code>を使用すること
@@ -236,11 +276,21 @@ const hoge = () => {
 <ul>
 <li>基本的には<code>type</code>を使用すること</li>
 <li><code>extend</code>や<code>implements</code>を使用する場合は<code>interface</code>を使用すること</li>
+<li>型アサーション(<code>as</code>)についてはPJのルールに従うこと<br>※型を上書きしてしまうので、注意して使用すること</li>
 </ul>
 
 <h3 id="ternary-operator" class="numbered">三項演算子</h3>
 <ul>
-<li>条件式が簡潔な場合にのみ使用すること</li>
+<li>
+条件式が簡潔な場合にのみ使用すること
+<pre><code class="language-ts bad">const value = 10;
+const message = value > 5 ? "大きい" : value < 5 ? "小さい" : "等しい";
+
+console.log(message);</code></pre>
+<pre><code class="language-ts">const isLoggedIn = true;
+const message = isLoggedIn ? "ログイン済みです" : "ログインしてください";
+console.log(message); // "ログイン済みです"</code></pre>
+</li>
 </ul>
 
 <h3 id="modifier" class="numbered">修飾子</h3>
@@ -299,9 +349,6 @@ console.log(count += 10);
 構成についてはこのコメントアウトを削除し、適宜規則を作成すること
 ###
 </code></pre>
-<!-- <ul>
-  <li><code>utils, constants, types</code>等はPJ共通で構成すること</li>
-</ul> -->
 
 <h2 id="error-handling" class="numbered">エラーハンドリング</h2>
 
@@ -316,10 +363,10 @@ console.log(count += 10);
 <h2 id="code-formatter" class="numbered">コードフォーマット</h2>
 
 <h3 id="formatter-rule" class="numbered">フォーマット規則</h3>
-<ul>
-<li>ESLintやPrettierを導入する等、PJ内で共通のフォーマットを定めること</li>
-<li>定めたフォーマットは設定ファイル<code>.prettierrc/.eslintrc</code>や資料にまとめ、共有すること</li>
-</ul>
+<pre><code>###
+構成についてはこのコメントアウトを削除し、適宜規則を作成すること
+###
+</code></pre>
 
 </div>
 </body>
