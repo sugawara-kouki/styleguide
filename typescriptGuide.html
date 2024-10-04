@@ -63,7 +63,7 @@ const HOGE_FUGA_CONFIG: Readonly<ConfigType> = {
 <h3 id="functions" class="numbered">関数</h3>
 <ul>
   <li>ローワーキャメルケースで記述すること</li>
-  <li>名前の短さではなく分かりやすさを優先して命名すること<br>また、使用する単語数は原則4単語までとする。</li>
+  <li>名前の短さではなく分かりやすさを優先して命名すること<br>また、使用する単語数は原則5単語までとする。</li>
   <li>実行される処理内容と一致する命名をすること</li>
   <li>クラス内のプライベート関数は、先頭にアンダースコアを付けて命名すること<br>それ以外の関数にはアンダースコアは使用しないこと</li>
   <li>値をreturnする関数の場合は、返却値が明確な命名をすること</li>
@@ -181,7 +181,7 @@ const outputName = (name: string | null) => {
 
 <h3 id="function-write-rule" class="numbered">関数</h3>
 <ul>
-<li>jsdocsを用いてドキュメントを記述すること<br>引数や戻り値の説明も記述すること</li>
+<li>jsdocを用いてドキュメントを記述すること<br>引数や戻り値の説明も記述すること</li>
 <li>関数は1つの責務(役割)に限定し、実装をすること(カプセル化)</li>
 <li>戻り値, 引数の型定義を行うこと</li>
 <li>早期リターンを積極的に用いること</li>
@@ -276,7 +276,10 @@ const hoge = () => {
 <ul>
 <li>基本的には<code>type</code>を使用すること</li>
 <li><code>extend</code>や<code>implements</code>を使用する場合は<code>interface</code>を使用すること</li>
-<li>型アサーション(<code>as</code>)についてはPJのルールに従うこと<br>※型を上書きしてしまうので、注意して使用すること</li>
+<pre><code>##
+型アサーション(as)についてはこのコメントアウトを削除し、適宜規則を作成すること
+※型を上書きしてしまうので、注意して使用すること  
+##</code></pre>
 </ul>
 
 <h3 id="ternary-operator" class="numbered">三項演算子</h3>
@@ -319,6 +322,10 @@ console.log(count += 10);
 <h3 id="null-undefined-safety-operator" class="numbered">null/undefined安全演算子</h3>
 <ul>
 <li>Optional Chaining(<code>?.</code>)やNullish Coalescing(<code>??</code>)を利用して安全に値にアクセスすること</li>
+<li>値がundefinedの可能性がある場合はそれを想定したコードを書くこと
+<pre><code class="language-ts">// undefinedの場合に空文字を入れる
+const name: string = data?.name ?? '';</code></pre>
+</li>
 <li><code>null/undefined</code>を許容しない場合は<code>if-else</code>文などで判別し、事前に除外すること<br>この判別の際には否定演算子は使用せず、厳密等価演算子で判定すること<br>
 <pre><code class="language-ts bad">const outputName(name: string | undefined | null) => {
   if (!name) {
@@ -364,7 +371,8 @@ console.log(count += 10);
 
 <h3 id="formatter-rule" class="numbered">フォーマット規則</h3>
 <pre><code>###
-構成についてはこのコメントアウトを削除し、適宜規則を作成すること
+静的解析ツール(ESLint等)やフォーマッター(Prettier等)の設定については
+このコメントアウトを削除し、適宜規則を作成すること
 ###
 </code></pre>
 
