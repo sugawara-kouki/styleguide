@@ -323,7 +323,8 @@ console.log(count += 10);
 <ul>
 <li>Optional Chaining(<code>?.</code>)やNullish Coalescing(<code>??</code>)を利用して安全に値にアクセスすること</li>
 <li>値がundefinedの可能性がある場合はそれを想定したコードを書くこと
-<pre><code class="language-ts">// undefinedの場合に空文字を入れる
+<pre><code class="language-ts">// undefinedの時に設定する値は場合によって適切なものを設定
+// 下記の場合はnameが空の時は空文字を設定
 const name: string = data?.name ?? '';</code></pre>
 </li>
 <li><code>null/undefined</code>を許容しない場合は<code>if-else</code>文などで判別し、事前に除外すること<br>この判別の際には否定演算子は使用せず、厳密等価演算子で判定すること<br>
