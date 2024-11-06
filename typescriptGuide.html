@@ -415,6 +415,26 @@ function map<K, V>(input: Map<K, V>): Array<V> {
 
 </ul>
 
+<h3 id="type-annotations-write-rule" class="numbered">型アノテーション</h3>
+<p>型アノテーションとは、変数や関数の引数、戻り値などに型を明示的に指定するための手法です<br>これにより、型安全性を高め、コードの可読性を向上させることができます</p>
+<ul>
+<li>変数の型アノテーションは次のように記述すること<pre><code class="language-ts">const variableName: Type = value;</code></pre></li>
+<li>関数の引数や戻り値に対して使用し、明示的に型を指定すること
+<pre><code class="language-ts">// 関数の引数、戻り値
+function add(a: number, b: number): number {
+  return a + b;
+}</code></pre></li>
+<li>配列やオブジェクトに使用し、明示的に型を指定すること
+<pre><code class="language-ts">// 配列
+const numbers: number[] = [1, 2, 3];
+
+// オブジェクト
+const person: { name: string; age: number; } = {
+  name: "Alice",
+  age: 30
+};</code></pre></li>
+</ul>
+
 <h2 id="folder-structure" class="numbered">フォルダ構成</h2>
 
 <h3 id="structure-rule" class="numbered">構成規則</h3>
