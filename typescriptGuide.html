@@ -99,6 +99,14 @@ const HOGE_FUGA_CONFIG: Readonly<ConfigType> = {
   <li>メンバもパスカルケースで記述すること</li>
 </ul>
 
+<h3 id="generics-naming" class="numbered">ジェネリクス</h3>
+<p>ジェネリクスとは、型をパラメータとして受け取ることができる機能であり、再利用可能なコンポーネントや関数を作成する際に非常に有用なものです<br>特定の型に依存せず、様々な型で動作するコードを書くことが可能になります</p>
+<ul>
+  <li>型引数には、単一のアルファベットを使用すること<br>例えば、<code>T</code>, <code>U</code>, <code>K</code>など</li>
+  <li>意味を持つ名前を命名するときは、型の役割を示すこと(複数の場合も同じ)<br>例えば、<code>ElementType</code>, <code>ValueType</code>, <code>ItemType</code>など</li>
+  <li>短縮系(例: <code>T</code>)を使用する場合は、文脈が明確な場合のみ使用し、意味が不明瞭な場合は避けること</li>
+</ul>
+
 <h2 id="write-rule" class="numbered">記述規則</h2>
 
 <h3 id="comment" class="numbered">コメント</h3>
@@ -348,6 +356,59 @@ const name: string = data?.name ?? '';</code></pre>
 }
 </code></pre>
 </be></li>
+</ul>
+
+<h3 id="generics-write-rule" class="numbered">ジェネリクス</h3>
+<ul>
+<li>型引数を明確にすること</li>
+<li>必要に応じて型引数に制約を与えること</li>
+<li>型引数を持つ関数やクラスには、説明を記載したドキュメントコメントを明記すること<br>これにより、使用者が型の意図を理解して使用することができる</li>
+<li>ジェネリクスを用いたコードについては、再利用可能であることを意識して、特定の型に依存しないように記述すること</li>
+<pre><code class="language-ts bad">// NG例
+// ジェネリクスを使用しているが、型引数の定義が不明瞭
+function process(data: any[]): any[] {
+  return data.map(item => item);
+}
+
+// 型引数が複数あるが、適切な説明がない
+function map(input: any): any {
+  // 処理内容が不明確
+  return input;
+}
+
+// 型引数に制約がないため、型安全性が低い
+function merge(obj1: any, obj2: any): any {
+  return { ...obj1, ...obj2 };
+}</code></pre>
+<pre><code class="language-ts">// OK例
+/**
+ * 配列内のアイテムを処理する関数。
+ * @param items - 処理するアイテムの配列
+ * @returns 処理されたアイテムの配列
+ */
+function processItems<T>(items: T[]): T[] {
+  return items.map(item => item);
+}
+
+/**
+ * 2つのオブジェクトをマージする関数。
+ * @param obj1 - マージする最初のオブジェクト
+ * @param obj2 - マージする2番目のオブジェクト
+ * @returns マージされたオブジェクト
+ */
+function merge<T extends object>(obj1: T, obj2: T): T {
+  return { ...obj1, ...obj2 };
+}
+
+/**
+ * マップを配列に変換する関数。
+ * @param input - 変換するマップ
+ * @returns マップの値の配列
+ */
+function map<K, V>(input: Map<K, V>): Array<V> {
+  return Array.from(input.values());
+}</code></pre>
+
 </ul>
 
 <h2 id="folder-structure" class="numbered">フォルダ構成</h2>
