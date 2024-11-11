@@ -125,6 +125,22 @@ const HOGE_FUGA_CONFIG: Readonly<ConfigType> = {
 // NOTE: ○○する際は○○する必要があります
 </code></pre></li>
 <li>タスクコメントにPJの課題が紐づく場合は、課題番号を明記すること</li>
+<li>関数やクラス名には、JSDocを使用したコメントを記述すること<br>そうすることで、下記のメリットが生まれる
+  <ul>
+    <li>引数の型や戻り値の型を明示することで、エディタやIDEが型チェックを行い、開発時のエラーを未然に防ぐことができる</li>
+    <li>コードの意図や使用方法を明示することで、ほかの開発者がコードを理解しやすくなる</li>
+    <li>エディタでの補完機能が向上し、関数やメソッドの使い方が提示されるため、開発効率が向上する</li>
+  </ul>
+<pre><code class="language-ts">/*
+ * 2つの数値を加算する関数
+ * @param {number} a - 加算する最初の数値
+ * @param {number} b - 加算する2番目の数値
+ * @returns {number} - 加算結果
+ */
+function add(a, b) {
+  return a + b;
+}</code></pre>
+</li>
 </ul>
 
 <h3 id="iterative-process" class="numbered">繰り返し処理</h3>
