@@ -435,6 +435,95 @@ const person: { name: string; age: number; } = {
 };</code></pre></li>
 </ul>
 
+<h3 id="arrow-functions-rule" class="numbered">アロー関数</h3>
+<ul>
+<li>アロー関数は、関数を簡潔に定義するために使用すること</li>
+<li>必要に応じて、通常の関数と使い分けること。特に、thisのスコープを固定したい場合に有効である
+<pre><code class="language-ts">// 通常の関数を使用した場合
+class Counter {
+  count: number;
+
+  constructor() {
+    this.count = 0;
+  }
+
+  increment() {
+    setTimeout(function() {
+      // thisはグローバルオブジェクトを指すため、意図した動作にならない
+      this.count++;
+      console.log(this.count);
+    }, 1000);
+  }
+}
+
+const counter = new Counter();
+// 出力: NaN
+counter.increment();
+
+// アロー関数を使用した場合
+class CounterArrow {
+  count: number;
+
+  constructor() {
+    this.count = 0;
+  }
+
+  increment() {
+    setTimeout(() => {
+      // thisがCounterArrowインスタンスを指すため、意図した動作になる
+      this.count++;
+      console.log(this.count);
+    }, 1000);
+  }
+}
+
+const counterArrow = new CounterArrow();
+// 出力: 1
+counterArrow.increment();
+</code></pre></li>
+<li>引数が1つの場合は、括弧を省略することができるが、可読性を考慮して括弧を明示すること
+<pre><code class="language-ts">// 括弧を省略した例
+const square = x => x * x;
+// 出力: 25
+console.log(square(5));
+
+// 括弧を明示した例（可読性向上）
+const squareWithBrackets = (x) => x * x;
+// 出力: 25
+console.log(squareWithBrackets(5));
+</code></pre></li>
+<li>本体が1行の処理の場合は、波括弧を省略できるが、可読性を考慮して明示すること
+<pre><code class="language-ts">// 波括弧を省略した例
+const double = x => x * 2;
+// 出力: 20
+console.log(double(10)); 
+
+// 波括弧を明示した例（可読性向上）
+const doubleWithBrackets = (x) => {
+  return x * 2;
+};
+// 出力: 20
+console.log(doubleWithBrackets(10));
+</code></pre>
+</li>
+<li>アロー関数を他の関数の引数として使用する場合、文脈に応じて適切に扱うこと
+<pre><code class="language-ts">// アロー関数を引数として使用した例
+const numbers = [1, 2, 3, 4, 5];
+
+// アロー関数を使って配列の各要素を2倍にする
+const doubledNumbers = numbers.map(num => num * 2);
+// 出力: [2, 4, 6, 8, 10]
+console.log(doubledNumbers);
+
+// 文脈に応じて適切に扱う例
+const isEven = (num) => num % 2 === 0;
+const evenNumbers = numbers.filter(isEven);
+// 出力: [2, 4]
+console.log(evenNumbers);
+</code></pre>
+</li>
+</ul>
+
 <h2 id="folder-structure" class="numbered">フォルダ構成</h2>
 
 <h3 id="structure-rule" class="numbered">構成規則</h3>
