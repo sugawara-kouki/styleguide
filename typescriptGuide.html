@@ -540,6 +540,28 @@ console.log(evenNumbers);
 </li>
 </ul>
 
+<h3 id="import-order-rule" class="numbered">インポート順</h3>
+<ul>
+  <li>
+<p>インポートの順序については下記の通りで記述すること</p>
+<ol>
+  <li>標準ライブラリのインポート<br>JavaScriptの標準ライブラリや組み込みモジュール（例: <code>fs</code>, <code>path</code>など）</li>
+  <li>外部ライブラリのインポート<br>npmなどからインストールした外部ライブラリ（例: <code>react</code>, <code>zod</code>など）</li>
+  <li>内部モジュールのインポート<br>PJ内で作成したモジュールやコンポーネント</li>
+</ol>
+<pre><code class="language-ts">import fs from 'fs'; // 標準ライブラリのインポート
+
+import React from 'react'; // 外部ライブラリのインポート
+
+import MyComponent from './MyComponent'; // 内部モジュールのインポート
+import { helperFunction } from './utils'; // 内部ユーティリティのインポート
+</code></pre>
+</li>
+<li>各インポート文はアルファベット順に並べること<br>フォーマッターの設定で自動で並び替えるように設定しておくことを推奨します</li>
+</ul>
+
+
+
 <h2 id="folder-structure" class="numbered">フォルダ構成</h2>
 
 <h3 id="structure-rule" class="numbered">構成規則</h3>
