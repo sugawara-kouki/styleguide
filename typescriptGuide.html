@@ -620,10 +620,44 @@ import { helperFunction } from './utils'; // 内部ユーティリティのイ�
 
 <h3 id="handling-rule" class="numbered">ハンドリング規則</h3>
 <ul>
+  <li>プロジェクト内で一貫したエラーハンドリングの方法を採用すること</li>
   <li>エラーハンドリングは常に行い、発生箇所を表す明確なメッセージを出力すること</li>
   <li>開発環境：コンソールにエラーを出力し、デバッグをしやすくすること<br>本番環境：コンソールにはエラーを出力せず、ハンドリングを行った上でUI側でユーザーにエラーであることを通知すること</li>
   <li><code>try-catch</code>でキャッチされる前提の処理は実装しないこと</li>
   <li>エラーメッセージについてはPJ内で共通の規則を作成し、規則に従った出力をすること</li>
+  <li>エラーメッセージは具体的で、問題の原因を特定しやすくすること</li>
+<pre><code class="language-ts">const fetchData = async (url: string): Promise<any> => {
+  try {
+    const response = await fetch(url);
+    
+    // HTTPステータスコードの確認
+    if (!response.ok) {
+      throw new Error('ネットワークエラー: ' + response.statusText);
+    }
+
+    // データのJSON変換
+    return await response.json();
+  } catch (error) {
+    // エラーログの出力
+    console.error('データ取得中にエラーが発生しました:', error);
+    // エラーを再スローして呼び出し元で処理できるようにする
+    throw error;
+  }
+};
+
+const displayData = async (url: string) => {
+  try {
+    const data = await fetchData(url);
+    console.log('取得したデータ:', data);
+  } catch (error) {
+    // ユーザーへの通知
+    console.error('データを表示できませんでした:', error.message);
+    alert('データの取得に失敗しました。後ほど再試行してください。');
+  }
+};
+
+displayData('https://api.example.com/data'); // 例: データを取得するURL
+</code></pre>
 </ul>
 
 <h2 id="code-formatter" class="numbered">コードフォーマット</h2>
