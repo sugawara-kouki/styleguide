@@ -344,7 +344,53 @@ console.log(count += 10);
 <ul>
 <li>非同期処理を使用する際は<code>async/await</code>を使用すること</li>
 <li>プロミスチェーン(<code>Promise.then().catch()</code>)は基本的に使用しないこと</li>
-<li>非同期処理を並列で処理する際は<code>Promise.all</code>を使用してパフォーマンスを担保すること</li>
+<li><code>await</code>を使用する際は、必ず<code>try</code>/<code>catch</code>ブロックを用いてエラーを捕捉すること
+<pre><code class="language-ts">const fetchData = async () => {
+  try {
+    const response = await fetch('https://api.example.com/data');
+    if (!response.ok) {
+    throw new Error('ネットワークエラー: ' + response.statusText);
+    }
+    const data = await response.json();
+    return data;
+  } catch (error) {
+  console.error('データ取得中にエラーが発生しました:', error);
+    return null;
+  }
+};</code></pre></li>
+<li><code>catch</code>でエラーを補足した場合、一貫性のある戻り値を返すこと<br>（例: nullや特定のエラーメッセージオブジェクトなど）。</li>
+<li>非同期処理を並列で処理する際は<code>Promise.all</code>を使用してパフォーマンスを担保すること
+<pre><code class="language-ts">const fetchUserData = async (userId: number): Promise<any> => {
+  const response = await fetch(`https://api.example.com/users/${userId}`);
+  if (!response.ok) {
+    throw new Error('ユーザーデータの取得に失敗しました');
+  }
+  return await response.json();
+};
+
+const fetchPostData = async (userId: number): Promise<any> => {
+  const response = await fetch(`https://api.example.com/users/${userId}/posts`);
+  if (!response.ok) {
+    throw new Error('投稿データの取得に失敗しました');
+  }
+  return await response.json();
+};
+
+/*
+ * Promise.allの使用例
+ */
+try {
+  const [userData, postData] = await Promise.all([
+    fetchUserData(1),
+    fetchPostData(1),
+  ]);
+  console.log('ユーザーデータ:', userData);
+  console.log('投稿データ:', postData);
+} catch (error) {
+  console.error('エラーが発生しました:', error);
+}
+</code></pre>
+</li>
 </ul>
 
 <h3 id="null-undefined-safety-operator" class="numbered">null/undefined安全演算子</h3>
