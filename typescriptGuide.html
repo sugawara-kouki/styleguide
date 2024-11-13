@@ -305,8 +305,9 @@ const hoge = () => {
 <li>基本的には<code>type</code>を使用すること</li>
 <li><code>extend</code>や<code>implements</code>を使用する場合は<code>interface</code>を使用すること</li>
 <pre><code>##
-型アサーション(as)についてはこのコメントアウトを削除し、適宜規則を作成すること
-※型を上書きしてしまうので、注意して使用すること  
+型アサーション(as)についてはPJによって扱いが変わることが多いため
+このコメントアウトを削除し、適宜規則を作成すること
+※型を上書きしてしまうので、注意して使用すること
 ##</code></pre>
 </ul>
 
@@ -612,7 +613,8 @@ import { helperFunction } from './utils'; // 内部ユーティリティのイ�
 
 <h3 id="structure-rule" class="numbered">構成規則</h3>
 <pre><code>###
-構成についてはこのコメントアウトを削除し、適宜規則を作成すること
+フォルダ構成についてはPJによって変更になることが多いため
+このコメントアウトを削除し、適宜規則を作成すること
 ###
 </code></pre>
 
@@ -683,7 +685,7 @@ displayData('https://api.example.com/data'); // 例: データを取得するURL
 </ul>
 <pre><code>###
 静的解析ツール(ESLint等)やフォーマッター(Prettier等)の設定内容については
-このコメントアウトを削除し、適宜規則を作成すること
+PJによって変更になることが多いため、このコメントアウトを削除し、適宜規則を作成すること
 ###
 </code></pre>
 
